@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ team['name'] }} - Players</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Receptions</th>
+            <th>Yards</th>
+            <th>Touchdowns</th>
+            <th>Interceptions (WR)</th>
+            <th>Passing Yards</th>
+            <th>Passing Touchdowns</th>
+            <th>Extra Points</th>
+            <th>Interceptions (QB)</th>
+            <th>Total Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in players %}
+        <tr>
+            <td>{{ player.name }}</td>
+            <td>{{ player.position }}</td>
+            <td>{{ player.receptions }}</td>
+            <td>{{ player.yards }}</td>
+            <td>{{ player.touchdowns }}</td>
+            <td>{{ player.interceptions }}</td>
+            <td>{{ player.passing_yards }}</td>
+            <td>{{ player.passing_touchdowns }}</td>
+            <td>{{ player.extra_points }}</td>
+            <td>{{ player.interceptions_qb }}</td>
+            <td>{{ player.total_points }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('index') }}">Back to League Table</a>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Edit Stats for {{ player['name'] }} ({{ player['position'] }})</h2>
+
+<form method="POST">
+    {% if player['position'] == 'Quarterback' %}
+    <!-- Form for Quarterbacks -->
+    <label for="passing_yards">Passing Yards:</label>
+    <input type="number" id="passing_yards" name="passing_yards" value="{{ stat['passing_yards'] if stat else 0 }}" required>
+    <br><br>
+
+    <label for="passing_touchdowns">Passing Touchdowns:</label>
+    <input type="number" id="passing_touchdowns" name="passing_touchdowns" value="{{ stat['passing_touchdowns'] if stat else 0 }}" required>
+    <br><br>
+
+    <label for="extra_points">Extra Points:</label>
+    <input type="number" id="extra_points" name="extra_points" value="{{ stat['extra_points'] if stat else 0 }}" required>
+    <br><br>
+
+    <label for="interceptions_qb">Interceptions (QB):</label>
+    <input type="number" id="interceptions_qb" name="interceptions_qb" value="{{ stat['interceptions_qb'] if stat else 0 }}" required>
+    <br><br>
+
+    {% else %}
+    <!-- Form for Wide Receivers -->
+    <label for="receptions">Receptions:</label>
+    <input type="number" id="receptions" name="receptions" value="{{ stat['receptions'] if stat else 0 }}" required>
+    <br><br>
+
+    <label for="yards">Yards:</label>
+    <input type="number" id="yards" name="yards" value="{{ stat['yards'] if stat else 0 }}" required>
+    <br><br>
+
+    <label for="touchdowns">Touchdowns:</label>
+    <input type="number" id="touchdowns" name="touchdowns" value="{{ stat['touchdowns'] if stat else 0 }}" required>
+    <br><br>
+
+    <label for="interceptions">Interceptions:</label>
+    <input type="number" id="interceptions" name="interceptions" value="{{ stat['interceptions'] if stat else 0 }}" required>
+    <br><br>
+
+    {% endif %}
+    
+    <button type="submit">Save Stats</button>
+</form>
+
+{% endblock %}

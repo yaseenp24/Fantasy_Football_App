@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ player.name }} - Stats</h2>
+<p><strong>Team:</strong> {{ player.team }}</p>
+<p><strong>Position:</strong> {{ player.position }}</p>
+<p><strong>Total Points:</strong> {{ player.total_points }}</p>
+
+<h3>Weekly Stats</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Week</th>
+            {% if player.position == 'Quarterback' %}
+            <th>Passing Yards</th>
+            <th>Passing Touchdowns</th>
+            <th>Extra Points</th>
+            <th>Interceptions (QB)</th>
+            {% else %}
+            <th>Receptions</th>
+            <th>Yards</th>
+            <th>Touchdowns</th>
+            <th>Interceptions (WR)</th>
+            {% endif %}
+            <th>Total Points</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if stats %}
+            {% for stat in stats %}
+            <tr>
+                <td>{{ stat.week }}</td>
+                {% if player.position == 'Quarterback' %}
+                <td>{{ stat.passing_yards }}</td>
+                <td>{{ stat.passing_touchdowns }}</td>
+                <td>{{ stat.extra_points }}</td>
+                <td>{{ stat.interceptions_qb }}</td>
+                {% else %}
+                <td>{{ stat.receptions }}</td>
+                <td>{{ stat.yards }}</td>
+                <td>{{ stat.touchdowns }}</td>
+                <td>{{ stat.interceptions }}</td>
+                {% endif %}
+                <td>{{ stat.total_points }}</td>
+                <td><a href="{{ url_for('edit_stats', player_id=player.id, week=stat.week) }}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="6">No stats available.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% set next_week = stats|length + 1 if stats else 1 %}
+<a href="{{ url_for('edit_stats', player_id=player.id, week=next_week) }}">Add Stats for Next Week</a>
+{% endblock %}

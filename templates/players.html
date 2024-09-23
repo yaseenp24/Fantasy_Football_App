@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Players</h2>
+
+<h3>Quarterbacks</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Team</th>
+            <th>Passing Yards</th>
+            <th>Passing Touchdowns</th>
+            <th>Extra Points</th>
+            <th>Interceptions (QB)</th>
+            <th>Total Points</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for qb in quarterbacks %}
+        <tr>
+            <td>{{ qb.name }}</td>
+            <td>{{ qb.team }}</td>
+            <td>{{ qb.passing_yards }}</td>
+            <td>{{ qb.passing_touchdowns }}</td>
+            <td>{{ qb.extra_points }}</td>
+            <td>{{ qb.interceptions_qb }}</td>
+            <td>{{ qb.total_points }}</td>
+            <td><a href="{{ url_for('player_detail', player_id=qb.id) }}">View Stats</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Wide Receivers</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Team</th>
+            <th>Receptions</th>
+            <th>Yards</th>
+            <th>Touchdowns</th>
+            <th>Interceptions (WR)</th>  <!-- New Interceptions column -->
+            <th>Total Points</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for wr in wide_receivers %}
+        <tr>
+            <td>{{ wr.name }}</td>
+            <td>{{ wr.team }}</td>
+            <td>{{ wr.receptions }}</td>
+            <td>{{ wr.yards }}</td>
+            <td>{{ wr.touchdowns }}</td>
+            <td>{{ wr.interceptions }}</td>  <!-- Displaying interceptions -->
+            <td>{{ wr.total_points }}</td>
+            <td><a href="{{ url_for('player_detail', player_id=wr.id) }}">View Stats</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Add the image below the table -->
+<div style="text-align: center; margin-top: 20px;">
+    <img src="{{ url_for('static', filename='UFA_Photo1.JPG') }}" alt="UFA Logo" style="height: 450px; width: 900px; margin-right: 15px;">
+</div>
+<h2>League Table</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Team Name</th>
+            <th>Total Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for team in teams %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td><a href="{{ url_for('team_detail', team_id=team.id) }}">{{ team.name }}</a></td> <!-- Make team name clickable -->
+            <td>{{ team.total_points }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
