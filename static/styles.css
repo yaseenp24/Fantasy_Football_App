@@ -49,3 +49,67 @@ footer {
     color: black;  /* Black text */
 }
 
+/* Responsive Design */
+
+/* Styles for tablets */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    table {
+        font-size: 14px;
+        margin: 0 10px;
+    }
+    
+    header {
+        padding: 15px;
+    }
+
+    nav a {
+        margin: 0 5px;
+    }
+
+    main {
+        padding: 15px;
+    }
+}
+
+/* Styles for phones */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+    
+    table {
+        font-size: 12px;
+        margin: 0 5px;
+        overflow-x: auto;
+        display: block;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch; /* For smooth scrolling on mobile */
+    }
+
+    th, td {
+        padding: 5px;
+    }
+
+    header {
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    nav a {
+        margin: 0 3px;
+        font-size: 12px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    /* Hide less important columns to save space */
+    .hide-on-mobile {
+        display: none;
+    }
+}
